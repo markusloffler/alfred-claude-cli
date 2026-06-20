@@ -15,6 +15,7 @@ Internal notes for building, testing, and releasing this workflow.
 │       ├── view.sh         # Text View Script Source — config, render, launch_job, run_view
 │       └── common.sh       # Code shared by both scripts (json_escape)
 ├── build.sh                # Packages workflow/ → dist/*.alfredworkflow
+├── CHANGELOG.md            # Release notes (Keep a Changelog) — sliced into the GitHub Release
 └── .github/
     └── workflows/
         └── release.yml     # Builds + publishes the .alfredworkflow on tag push
@@ -40,24 +41,28 @@ open dist/alfred-claude-cli-v*.alfredworkflow
 ## Make a release
 
 Releases are built and published by `.github/workflows/release.yml` on any
-`v*.*.*` tag (`macos-latest` runner → `build.sh` → uploads
-`dist/*.alfredworkflow` to a GitHub Release with auto-generated notes).
+`v*.*.*` tag (`macos-latest` runner → `build.sh` → extracts the matching
+`CHANGELOG.md` section → uploads `dist/*.alfredworkflow` to a GitHub Release).
 
-1. Bump `<key>version</key>` in `workflow/info.plist` (e.g. `0.1.0` → `0.2.0`).
-2. Commit the bump.
-3. Tag and push — the tag version should match the plist:
+1. Move the items under `## [Unreleased]` in `CHANGELOG.md` into a new
+   `## [0.2.0] - YYYY-MM-DD` section (keep an empty `## [Unreleased]` on top).
+2. Bump `<key>version</key>` in `workflow/info.plist` (e.g. `0.1.0` → `0.2.0`).
+3. Commit the bump and the changelog.
+4. Tag and push — the tag version should match the plist:
 
    ```bash
    git tag v0.2.0
    git push origin v0.2.0
    ```
 
-4. The workflow runs and attaches `alfred-claude-cli-v0.2.0.alfredworkflow` to the
+5. The workflow runs and attaches `alfred-claude-cli-v0.2.0.alfredworkflow` to the
    release. You can also trigger it manually via **Actions → Release →
    Run workflow** (`workflow_dispatch`).
 
-> Keep the tag and the plist `version` in sync — the built filename takes its
-> version from the plist, not from the tag.
+> Keep three things in sync: the tag, the plist `version`, and the `CHANGELOG.md`
+> heading. The release job derives the version from the plist and pulls notes from
+> the `## [<version>]` heading; if no matching section exists it falls back to
+> GitHub's auto-generated notes.
 
 ## How it runs
 
