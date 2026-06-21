@@ -30,6 +30,17 @@
 					<string></string>
 				</dict>
 			</array>
+			<key>result-view</key>
+			<array>
+				<dict>
+					<key>destinationuid</key>
+					<string>copy-answer</string>
+					<key>modifiers</key>
+					<integer>0</integer>
+					<key>modifiersubtext</key>
+					<string></string>
+				</dict>
+			</array>
 		</dict>
 		<key>createdby</key>
 		<string>Markus Löffler</string>
@@ -118,6 +129,25 @@
 				<key>version</key>
 				<integer>1</integer>
 			</dict>
+			<dict>
+				<key>config</key>
+				<dict>
+					<key>autopaste</key>
+					<false />
+					<key>clipboardtext</key>
+					<string>{var:ANSWER}</string>
+					<key>ignoredynamicplaceholders</key>
+					<false />
+					<key>transient</key>
+					<false />
+				</dict>
+				<key>type</key>
+				<string>alfred.workflow.output.clipboard</string>
+				<key>uid</key>
+				<string>copy-answer</string>
+				<key>version</key>
+				<integer>3</integer>
+			</dict>
 		</array>
 		<key>readme</key>
 		<string></string>
@@ -141,6 +171,13 @@
 			<dict>
 				<key>xpos</key>
 				<integer>540</integer>
+				<key>ypos</key>
+				<integer>100</integer>
+			</dict>
+			<key>copy-answer</key>
+			<dict>
+				<key>xpos</key>
+				<integer>760</integer>
 				<key>ypos</key>
 				<integer>100</integer>
 			</dict>

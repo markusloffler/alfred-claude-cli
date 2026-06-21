@@ -83,3 +83,9 @@ What happens, in order, when you type `ca <prompt>` and press Enter:
    Markdown and drops `"rerun"`, so polling stops.
 
 The nonce `N` keys the cache per Enter, so each run is fresh and independent.
+
+On success the job also writes the **clean answer** (no prompt header) to a
+sibling `<N>.answer` cache file. The final render exposes it as the `ANSWER`
+variable and shows a footer hint; the Text View is connected to a **Copy to
+Clipboard** output (`{var:ANSWER}`), so pressing ⏎ copies the answer. Error and
+timeout renders write no answer file, so no copy action is offered.

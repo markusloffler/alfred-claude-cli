@@ -29,15 +29,22 @@ JOB_TIMEOUT_SECONDS=180
 # Emit a Text View JSON response.
 # Args: $1 - response Markdown (raw)
 #       $2 - rerun interval in seconds (optional; omit to stop polling)
+#       $3 - raw answer for downstream actions (optional); when set, it is
+#            exposed as the ANSWER variable and a copy-hint footer is shown.
 emit_view() {
-    local resp
+    local resp rerun="$2" extra=""
     resp=$(printf '%s' "$1" | json_escape)
-    if [[ -n "$2" ]]; then
-        printf '{"rerun":%s,"response":"%s","behaviour":{"response":"replace","scroll":"start"}}' \
-            "$2" "$resp"
+    if [[ -n "$3" ]]; then
+        local answer
+        answer=$(printf '%s' "$3" | json_escape)
+        extra=$(printf ',"variables":{"ANSWER":"%s"},"footer":"⏎ Copy answer to clipboard"' "$answer")
+    fi
+    if [[ -n "$rerun" ]]; then
+        printf '{"rerun":%s,"response":"%s"%s,"behaviour":{"response":"replace","scroll":"start"}}' \
+            "$rerun" "$resp" "$extra"
     else
-        printf '{"response":"%s","behaviour":{"response":"replace","scroll":"start"}}' \
-            "$resp"
+        printf '{"response":"%s"%s,"behaviour":{"response":"replace","scroll":"start"}}' \
+            "$resp" "$extra"
     fi
 }
 
@@ -92,10 +99,12 @@ validate_config() {
 # ---- Background job ----
 
 # Launch Claude detached, writing the rendered answer (prompt header + output,
-# or a fenced error block) to $out.
-# Args: $1 - prompt   $2 - output file   $3 - pid file
+# or a fenced error block) to $out. On success the raw answer (no header) is
+# also written to $answerf so downstream actions can copy it without re-parsing
+# the rendered Markdown.
+# Args: $1 - prompt   $2 - output file   $3 - pid file   $4 - answer file
 launch_job() {
-    local prompt="$1" out="$2" pidf="$3"
+    local prompt="$1" out="$2" pidf="$3" answerf="$4"
     local tmp="${out}.tmp"
 
     (
@@ -106,6 +115,8 @@ launch_job() {
             prompt_header "$prompt"
             if result=$("$CLAUDE_CLI" -p "$prompt" --model "$CLAUDE_MODEL" 2>&1); then
                 printf '%s\n' "$result"
+                # Persist the clean answer for downstream actions (copy etc.).
+                printf '%s' "$result" > "$answerf"
             else
                 printf '## ⚠️ Claude CLI error\n\n```\n%s\n```\n' "$result"
             fi
@@ -148,10 +159,15 @@ Type a prompt after the keyword, e.g. `ca explain recursion in one line`.'
     local out="$cache/$key.out"
     local pidf="$cache/$key.pid"
     local startf="$cache/$key.start"
+    local answerf="$cache/$key.answer"
 
-    # Finished: render the answer and stop polling.
+    # Finished: render the answer and stop polling. A clean answer file is only
+    # written on success, so on error $answer stays empty and no copy action /
+    # footer is offered.
     if [[ -f "$out" ]]; then
-        emit_view "$(cat "$out")"
+        local answer=""
+        [[ -f "$answerf" ]] && answer=$(cat "$answerf")
+        emit_view "$(cat "$out")" "" "$answer"
         return 0
     fi
 
@@ -183,7 +199,7 @@ The background job ended unexpectedly."
 
     # First call: start the background job and show the spinner.
     date +%s > "$startf"
-    launch_job "$prompt" "$out" "$pidf"
+    launch_job "$prompt" "$out" "$pidf" "$answerf"
     emit_view "$(spinner_text "$prompt" "$startf")" "$RERUN_INTERVAL"
 }
 
