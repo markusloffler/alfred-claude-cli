@@ -43,11 +43,18 @@ emit_view() {
 
 # ---- Rendering ----
 
-# Render the prompt as a blockquote followed by a horizontal-rule separator.
+# Render the prompt inside a fenced code block (Alfred's only Markdown element
+# that draws a filled, rounded box).
+# Uses a fence one backtick longer than the longest backtick run in the prompt
+# so prompts containing ``` don't break out of the box.
 # Args: $1 - prompt
 prompt_header() {
-    printf '%s\n' "$1" | sed 's/^/> /'
-    printf '\n---\n\n'
+    local prompt="$1" fence='```'
+    # Widen the fence past any backtick run in the prompt.
+    local run
+    run=$(printf '%s' "$prompt" | grep -oE '`+' | awk '{ if (length > m) m = length } END { print m+0 }')
+    while (( ${#fence} <= run )); do fence+='`'; done
+    printf '%s\n%s\n%s\n\n' "$fence" "$prompt" "$fence"
 }
 
 # Build the animated "thinking" spinner Markdown.

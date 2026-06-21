@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Improved icon
 - Changed keyword to "cla"
+- Improved styling of output
 
 ## [1.0.0] - 2026-06-20
 
