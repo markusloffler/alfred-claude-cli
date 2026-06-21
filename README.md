@@ -9,12 +9,12 @@ API key to manage and no per-token API charges to set up for this workflow.
 
 ## Usage
 
-Type `ca` followed by your prompt:
+Type `cla` followed by your prompt:
 
 ```
-ca explain recursion in one line
-ca write a git command to undo the last commit but keep the changes
-ca summarise the difference between TCP and UDP
+cla explain recursion in one line
+cla write a git command to undo the last commit but keep the changes
+cla summarise the difference between TCP and UDP
 ```
 
 Press Enter. The prompt is shown on top, followed by Claude's Markdown answer.

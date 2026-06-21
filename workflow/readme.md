@@ -4,10 +4,10 @@ Send a prompt to the Claude CLI and render the answer as Markdown — right insi
 
 ## Usage
 
-Type `ca` followed by your prompt, then press Enter:
+Type `cla` followed by your prompt, then press Enter:
 
 ```
-ca explain recursion in one line
+cla explain recursion in one line
 ```
 
 The prompt is shown on top, followed by Claude's answer.

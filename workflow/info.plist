@@ -47,7 +47,7 @@
 					<key>argumenttype</key>
 					<integer>0</integer>
 					<key>keyword</key>
-					<string>ca</string>
+					<string>cla</string>
 					<key>subtext</key>
 					<string>Send a prompt to Claude</string>
 					<key>text</key>
