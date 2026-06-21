@@ -34,7 +34,7 @@ Press Enter. The prompt is shown on top, followed by Claude's Markdown answer.
 ## Install
 
 1. Download the latest `alfred-claude-cli-vX.Y.Z.alfredworkflow` from the
-   [Releases](https://github.com/markusloeffler/alfred-claude-cli/releases) page.
+   [Releases](https://github.com/markusloffler/alfred-claude-cli/releases) page.
 2. Double-click it to import into Alfred.
 3. Open the workflow's configuration and set:
    - **Claude CLI Path** — path to your `claude` binary (default `~/.local/bin/claude`; find yours with `which claude`)
