@@ -1,3 +1,5 @@
+<img src="assets/icon.png" width="96" align="left" alt="Claude CLI for Alfred icon">
+
 # Claude CLI for Alfred
 
 An Alfred workflow that sends a prompt to the [Claude CLI](https://docs.claude.com/en/docs/claude-code)
