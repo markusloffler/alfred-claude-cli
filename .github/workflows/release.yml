@@ -16,6 +16,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify version matches tag
+        id: version
+        run: |
+          PLIST_VERSION=$(plutil -extract version raw workflow/info.plist)
+          echo "version=${PLIST_VERSION}" >> "$GITHUB_OUTPUT"
+          # For tag-triggered runs, the tag must match info.plist's version.
+          if [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
+            TAG_VERSION="${GITHUB_REF_NAME#v}"
+            if [[ "$TAG_VERSION" != "$PLIST_VERSION" ]]; then
+              echo "::error::Tag v${TAG_VERSION} does not match workflow/info.plist version ${PLIST_VERSION}. Bump info.plist (and CHANGELOG) before tagging."
+              exit 1
+            fi
+            echo "Tag v${TAG_VERSION} matches info.plist version ${PLIST_VERSION}."
+          fi
+
       - name: Build workflow
         run: |
           chmod +x build.sh
@@ -24,7 +39,7 @@ jobs:
       - name: Extract release notes
         id: notes
         run: |
-          VERSION=$(plutil -extract version raw workflow/info.plist)
+          VERSION="${{ steps.version.outputs.version }}"
           echo "Extracting CHANGELOG section for v${VERSION}"
           awk -v ver="$VERSION" '
             /^## \[/ {
