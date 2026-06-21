@@ -21,7 +21,7 @@ cla summarise the difference between TCP and UDP
 
 Press Enter. The prompt is shown on top, followed by Claude's Markdown answer.
 
-<img src="assets/screenshot_result.png" width="75%" alt="Claude's Markdown answer rendered inside Alfred">
+<img src="assets/screenshot_result.png" width="80%" alt="Claude's Markdown answer rendered inside Alfred">
 
 
 ## Requirements
