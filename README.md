@@ -17,16 +17,11 @@ cla write a git command to undo the last commit but keep the changes
 cla summarise the difference between TCP and UDP
 ```
 
-<p align="center">
-  <img src="assets/screenshot_prompt.png" width="65%" alt="Typing a prompt after the cla keyword">
-</p>
-
+<img src="assets/screenshot_prompt.png" width="65%" alt="Typing a prompt after the cla keyword">
 
 Press Enter. The prompt is shown on top, followed by Claude's Markdown answer.
 
-<p align="center">
-  <img src="assets/screenshot_result.png" width="75%" alt="Claude's Markdown answer rendered inside Alfred">
-</p>
+<img src="assets/screenshot_result.png" width="75%" alt="Claude's Markdown answer rendered inside Alfred">
 
 
 ## Requirements
