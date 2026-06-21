@@ -1,235 +1,235 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>info.markusloeffler.alfred-claude-cli</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
 	<dict>
-		<key>bundleid</key>
-		<string>info.markusloeffler.alfred-claude-cli</string>
-		<key>category</key>
-		<string>Productivity</string>
-		<key>connections</key>
-		<dict>
-			<key>ca-input</key>
-			<array>
-				<dict>
-					<key>destinationuid</key>
-					<string>ca-action</string>
-					<key>modifiers</key>
-					<integer>0</integer>
-					<key>modifiersubtext</key>
-					<string></string>
-				</dict>
-			</array>
-			<key>ca-action</key>
-			<array>
-				<dict>
-					<key>destinationuid</key>
-					<string>result-view</string>
-					<key>modifiers</key>
-					<integer>0</integer>
-					<key>modifiersubtext</key>
-					<string></string>
-				</dict>
-			</array>
-			<key>result-view</key>
-			<array>
-				<dict>
-					<key>destinationuid</key>
-					<string>copy-answer</string>
-					<key>modifiers</key>
-					<integer>0</integer>
-					<key>modifiersubtext</key>
-					<string></string>
-				</dict>
-			</array>
-		</dict>
-		<key>createdby</key>
-		<string>Markus Löffler</string>
-		<key>description</key>
-		<string>Send a prompt to the Claude CLI and render the answer as Markdown</string>
-		<key>disabled</key>
-		<false />
-		<key>name</key>
-		<string>Claude CLI</string>
-		<key>objects</key>
+		<key>ca-action</key>
 		<array>
 			<dict>
-				<key>config</key>
-				<dict>
-					<key>argumenttype</key>
-					<integer>0</integer>
-					<key>keyword</key>
-					<string>cla</string>
-					<key>subtext</key>
-					<string>Send a prompt to Claude</string>
-					<key>text</key>
-					<string>Ask Claude</string>
-					<key>withspace</key>
-					<true />
-				</dict>
-				<key>type</key>
-				<string>alfred.workflow.input.keyword</string>
-				<key>uid</key>
-				<string>ca-input</string>
-				<key>version</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>config</key>
-				<dict>
-					<key>concurrently</key>
-					<false />
-					<key>escaping</key>
-					<integer>102</integer>
-					<key>script</key>
-					<string>./scripts/passthrough.sh "$1"</string>
-					<key>scriptargtype</key>
-					<integer>1</integer>
-					<key>scriptfile</key>
-					<string></string>
-					<key>type</key>
-					<integer>5</integer>
-				</dict>
-				<key>type</key>
-				<string>alfred.workflow.action.script</string>
-				<key>uid</key>
-				<string>ca-action</string>
-				<key>version</key>
-				<integer>2</integer>
-			</dict>
-			<dict>
-				<key>config</key>
-				<dict>
-					<key>behaviour</key>
-					<integer>2</integer>
-					<key>fontmode</key>
-					<integer>0</integer>
-					<key>fontsizing</key>
-					<integer>0</integer>
-					<key>footertext</key>
-					<string></string>
-					<key>inputfile</key>
-					<string>./scripts/view.sh</string>
-					<key>inputtype</key>
-					<integer>1</integer>
-					<key>loadingtext</key>
-					<string>⏳ Asking Claude…</string>
-					<key>outputmode</key>
-					<integer>0</integer>
-					<key>scriptinput</key>
-					<integer>0</integer>
-					<key>spellchecking</key>
-					<integer>0</integer>
-					<key>stackview</key>
-					<false />
-				</dict>
-				<key>type</key>
-				<string>alfred.workflow.userinterface.text</string>
-				<key>uid</key>
+				<key>destinationuid</key>
 				<string>result-view</string>
-				<key>version</key>
-				<integer>1</integer>
-			</dict>
-			<dict>
-				<key>config</key>
-				<dict>
-					<key>autopaste</key>
-					<false />
-					<key>clipboardtext</key>
-					<string>{var:ANSWER}</string>
-					<key>ignoredynamicplaceholders</key>
-					<false />
-					<key>transient</key>
-					<false />
-				</dict>
-				<key>type</key>
-				<string>alfred.workflow.output.clipboard</string>
-				<key>uid</key>
-				<string>copy-answer</string>
-				<key>version</key>
-				<integer>3</integer>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 			</dict>
 		</array>
-		<key>readme</key>
-		<string></string>
-		<key>uidata</key>
-		<dict>
-			<key>ca-input</key>
-			<dict>
-				<key>xpos</key>
-				<integer>100</integer>
-				<key>ypos</key>
-				<integer>100</integer>
-			</dict>
-			<key>ca-action</key>
-			<dict>
-				<key>xpos</key>
-				<integer>320</integer>
-				<key>ypos</key>
-				<integer>100</integer>
-			</dict>
-			<key>result-view</key>
-			<dict>
-				<key>xpos</key>
-				<integer>540</integer>
-				<key>ypos</key>
-				<integer>100</integer>
-			</dict>
-			<key>copy-answer</key>
-			<dict>
-				<key>xpos</key>
-				<integer>760</integer>
-				<key>ypos</key>
-				<integer>100</integer>
-			</dict>
-		</dict>
-		<key>userconfigurationconfig</key>
+		<key>ca-input</key>
 		<array>
 			<dict>
-				<key>config</key>
-				<dict>
-					<key>default</key>
-					<string>~/.local/bin/claude</string>
-					<key>placeholder</key>
-					<string>Path to Claude CLI</string>
-					<key>required</key>
-					<true />
-					<key>trim</key>
-					<true />
-				</dict>
-				<key>description</key>
-				<string>Path to the Claude CLI binary. Find it with: which claude</string>
-				<key>label</key>
-				<string>Claude CLI Path</string>
-				<key>type</key>
-				<string>filepicker</string>
-				<key>variable</key>
-				<string>CLAUDE_CLI_PATH</string>
-			</dict>
-			<dict>
-				<key>config</key>
-				<dict>
-					<key>default</key>
-					<string>sonnet</string>
-					<key>placeholder</key>
-					<string>Model name</string>
-					<key>required</key>
-					<false />
-					<key>trim</key>
-					<true />
-				</dict>
-				<key>description</key>
-				<string>Claude model to use (e.g. sonnet, opus, haiku)</string>
-				<key>label</key>
-				<string>Model</string>
-				<key>type</key>
-				<string>textfield</string>
-				<key>variable</key>
-				<string>MODEL</string>
+				<key>destinationuid</key>
+				<string>ca-action</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
 			</dict>
 		</array>
-		<key>version</key>
-		<string>1.0.0</string>
-		<key>webaddress</key>
-		<string>https://github.com/markusloffler/alfred-claude-cli</string>
+		<key>result-view</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>copy-answer</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 	</dict>
+	<key>createdby</key>
+	<string>Markus Löffler</string>
+	<key>description</key>
+	<string>Send a prompt to the Claude CLI and render the answer as Markdown</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Claude CLI</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>cla</string>
+				<key>subtext</key>
+				<string>Send a prompt to Claude</string>
+				<key>text</key>
+				<string>Ask Claude</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>ca-input</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>./scripts/passthrough.sh "$1"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>ca-action</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>behaviour</key>
+				<integer>2</integer>
+				<key>fontmode</key>
+				<integer>0</integer>
+				<key>fontsizing</key>
+				<integer>0</integer>
+				<key>footertext</key>
+				<string></string>
+				<key>inputfile</key>
+				<string>./scripts/view.sh</string>
+				<key>inputtype</key>
+				<integer>1</integer>
+				<key>loadingtext</key>
+				<string>⏳ Asking Claude…</string>
+				<key>outputmode</key>
+				<integer>0</integer>
+				<key>scriptinput</key>
+				<integer>0</integer>
+				<key>spellchecking</key>
+				<integer>0</integer>
+				<key>stackview</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.userinterface.text</string>
+			<key>uid</key>
+			<string>result-view</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{var:ANSWER}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>copy-answer</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>ca-action</key>
+		<dict>
+			<key>xpos</key>
+			<integer>320</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>ca-input</key>
+		<dict>
+			<key>xpos</key>
+			<integer>100</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>copy-answer</key>
+		<dict>
+			<key>xpos</key>
+			<integer>760</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>result-view</key>
+		<dict>
+			<key>xpos</key>
+			<integer>540</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>~/.local/bin/claude</string>
+				<key>placeholder</key>
+				<string>Path to Claude CLI</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Path to the Claude CLI binary. Find it with: which claude</string>
+			<key>label</key>
+			<string>Claude CLI Path</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>CLAUDE_CLI_PATH</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>sonnet</string>
+				<key>placeholder</key>
+				<string>Model name</string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Claude model to use (e.g. sonnet, opus, haiku)</string>
+			<key>label</key>
+			<string>Model</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>MODEL</string>
+		</dict>
+	</array>
+	<key>version</key>
+	<string>1.1.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/markusloffler/alfred-claude-cli</string>
+</dict>
 </plist>
